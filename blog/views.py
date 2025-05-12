@@ -15,7 +15,7 @@ def posts(request):
     path: /posts
     Returns the rendered posts list page.
     """
-    pass
+    return render(request, "blog/posts.html")
 
 
 def post(request, slug):

@@ -16,6 +16,12 @@
     {% endblock %}
   </head>
   <body>
+    <header id="main-navigation">
+      <h1><a href="{% url 'blog-index' %}">Django Blog</a></h1>
+      <nav>
+        <a href="{% url 'blog-posts' %}">Posts</a>
+      </nav>
+    </header>
     {% block content %}
 
     {% endblock %}
