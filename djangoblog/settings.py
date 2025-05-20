@@ -24,14 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Example Secret Key 'django-insecure-h!ll0p^e@1q(4=2vtvgmg97eq=fmkzkwboeqp&3+lgrqqhsp*!'
-SECRET_KEY = getenv("SECRET_KEY")
+SECRET_KEY = getenv(
+    "DJANGO_SECRET_KEY", "django-insecure-h!ll0p ^ e@1q(4=2vtvgmg97eq=fmkzkwboeqp & 3+lgrqqhsp*!")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = getenv("IS_DEVELOPMENT", True)
 
 # Have to set this up for production.
 ALLOWED_HOSTS = [
-    getenv("APP_HOST")
+    getenv("APP_HOST", "localhost")
 ]
 
 
