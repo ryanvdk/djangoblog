@@ -23,8 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-h!ll0p^e@1q(4=2vtvgmg97eq=fmkzkwboeqp&3+lgrqqhsp*!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
+# Have to set this up for production.
 ALLOWED_HOSTS = []
 
 
@@ -124,9 +125,16 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Static fies (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.1/howto/static-files/
+# The STATIC_ROOT option is necessary for collecting static files for production. This is used with the py manage.py collectstatic command.
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
 
+# Settings for controlling location of user uploaded files. It is important to keep them separate from static files for security reasons.
 MEDIA_ROOT = BASE_DIR / "uploads"
 MEDIA_URL = "/files/"
