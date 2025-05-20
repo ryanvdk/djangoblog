@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # Example Secret Key 'django-insecure-h!ll0p^e@1q(4=2vtvgmg97eq=fmkzkwboeqp&3+lgrqqhsp*!'
 SECRET_KEY = getenv(
-    "DJANGO_SECRET_KEY", "django-insecure-h!ll0p ^ e@1q(4=2vtvgmg97eq=fmkzkwboeqp & 3+lgrqqhsp*!")
+    "SECRET_KEY", "django-insecure-h!ll0p ^ e@1q(4=2vtvgmg97eq=fmkzkwboeqp & 3+lgrqqhsp*!")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = getenv("IS_DEVELOPMENT", True)
@@ -83,13 +83,25 @@ WSGI_APPLICATION = 'djangoblog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# SQLite Setup
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# PostgreSQL
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "postgres",
+        "USER": getenv("DB_USER"),
+        "PASSWORD": getenv("DB_PASSWORD"),
+        "HOST": getenv("DB_HOST"),
+        "PORT": getenv("DB_PORT")
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
