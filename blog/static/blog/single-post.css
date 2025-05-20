@@ -95,10 +95,9 @@ main {
 }
 
 #comment-form button:hover,
-#comment-form button:active,
-{
-background-color: white;
-color: #390281;
+#comment-form button:active {
+    background-color: white;
+    color: #390281;
 }
 
 .form-control {
@@ -174,4 +173,59 @@ color: #390281;
 
 #comments h2 {
     color: #390281;
+}
+
+#read-later {
+    margin: 2rem 0;
+}
+
+#read-later button {
+    background-color: black;
+    border: 2px solid white;
+    padding: 0.5rem 2rem;
+    font: inherit;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+#read-later button:hover,
+#read-later button:active {
+    background-color: white;
+    color: black;
+}
+
+#stored-posts {
+    margin: 8rem auto 3rem auto;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    background-color: white;
+    width: 90%;
+    max-width: 40rem;
+}
+
+#stored-posts ul {
+    list-style: none;
+}
+
+#stored-posts li {
+    border-bottom: 1px solid lightslategray;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+#stored-posts a {
+    display: block;
+    padding: 1rem;
+    width: 100%;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+#stored-posts a:hover,
+#stored-posts a:active {
+    background-color: #390281;
+    color: white;
+
 }
