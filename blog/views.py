@@ -57,7 +57,8 @@ class PostView(View):
         return render(request, "blog/single-post.html", {
             "post": post,
             "tags": post.tags.all(),
-            "comment_form": CommentForm()
+            "comment_form": CommentForm(),
+            "comments": post.comments.all().order_by("-id")
         })
 
     def post(self, request, slug):
@@ -75,7 +76,8 @@ class PostView(View):
         return render(request, "blog/single-post.html", {
             "post": post,
             "tags": post.tags.all(),
-            "comment_form": CommentForm()
+            "comment_form": CommentForm(),
+            "comments": post.comments.all().order_by("-id")
         })
 
 # class PostView(DetailView):

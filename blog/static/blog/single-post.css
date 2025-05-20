@@ -73,7 +73,8 @@ main {
     border-radius: 2rem;
 }
 
-#comment-form {
+#comment-form,
+#comments {
     width: 90%;
     max-width: 20rem;
     margin: 3rem auto;
@@ -94,9 +95,10 @@ main {
 }
 
 #comment-form button:hover,
-#comment-form button:active {
-    background-color: white;
-    color: #390281;
+#comment-form button:active,
+{
+background-color: white;
+color: #390281;
 }
 
 .form-control {
@@ -119,4 +121,57 @@ main {
     padding: 0.25rem;
     border-radius: 6px;
     border: 1px solid lightslategray;
+}
+
+.errorlist {
+    list-style: none;
+    margin: 0.5rem 0;
+    padding: 0;
+    color: darkred;
+}
+
+.invalid label {
+    color: darkred;
+}
+
+.invalid input,
+.invalid textarea {
+    border: darkred;
+    background-color: lightcoral;
+}
+
+#alert {
+    margin: 0.5rem auto;
+    background-color: lightcoral;
+    color: darkred;
+    padding: 1rem;
+    width: 90%;
+    max-width: 40rem;
+}
+
+#alert a {
+    text-decoration: none;
+    border: 1px solid darkred;
+    color: white;
+    margin: 0.5rem 1.5rem;
+    border-radius: 6px;
+}
+
+#comments ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#comments li {
+    margin: 1rem;
+    border-bottom: 2px solid lightgray;
+}
+
+#comments li:last-of-type {
+    border-bottom: none;
+}
+
+#comments h2 {
+    color: #390281;
 }
