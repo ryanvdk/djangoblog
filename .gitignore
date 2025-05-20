@@ -1,0 +1,9 @@
+.ebextensions/
+
+.vscode/
+
+django_my_site/
+
+deployments/
+
+db.sqlite3
