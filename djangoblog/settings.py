@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+# Used for setting up environment variables
+from os import getenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,12 +23,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-h!ll0p^e@1q(4=2vtvgmg97eq=fmkzkwboeqp&3+lgrqqhsp*!'
+# Example Secret Key 'django-insecure-h!ll0p^e@1q(4=2vtvgmg97eq=fmkzkwboeqp&3+lgrqqhsp*!'
+SECRET_KEY = getenv(
+    "DJANGO_SECRET_KEY", "django-insecure-h!ll0p ^ e@1q(4=2vtvgmg97eq=fmkzkwboeqp & 3+lgrqqhsp*!")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = getenv("IS_DEVELOPMENT", True)
 
-ALLOWED_HOSTS = []
+# Have to set this up for production.
+ALLOWED_HOSTS = [
+    getenv("APP_HOST", "localhost")
+]
 
 
 # Application definition
@@ -124,9 +132,16 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Static fies (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.1/howto/static-files/
+# The STATIC_ROOT option is necessary for collecting static files for production. This is used with the py manage.py collectstatic command.
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
 
+# Settings for controlling location of user uploaded files. It is important to keep them separate from static files for security reasons.
 MEDIA_ROOT = BASE_DIR / "uploads"
 MEDIA_URL = "/files/"
