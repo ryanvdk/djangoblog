@@ -7,3 +7,5 @@ django_my_site/
 deployments/
 
 db.sqlite3
+
+*.ppk
