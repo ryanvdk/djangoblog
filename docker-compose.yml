@@ -1,0 +1,8 @@
+services:
+  web:
+    image: ryanjvdk/djangoblog:latest
+    ports:
+      - 8000:8000
+    env_file:
+      - .env
+    command: gunicorn djangoblog.wsgi:application --bind 0.0.0.0:8000

@@ -8,7 +8,7 @@ body {
 }
 
 #summary {
-    margin: 8rem auto 3rem auto;
+    margin: 7rem auto 1rem auto;
     padding: 2rem;
     width: 90%;
     max-width: 90rem;
@@ -16,23 +16,25 @@ body {
     background-color: #5706c0;
     position: relative;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    height: 22rem;
+    min-height: 22rem;
+    display: flex;
+    flex-flow: row;
+    justify-items: center;
+    align-items: center;
 }
 
 #summary h2 {
     color: white;
     font-size: 4.5rem;
-    margin-bottom: 0.25rem;
+    margin: 1rem 0;
 }
 
 #summary article {
-    position: absolute;
-    top: 2rem;
-    right: 3rem;
     padding: 1rem 2rem;
     border-radius: 12px;
     text-align: right;
     color: white;
+    flex-grow: 1;
 }
 
 #summary article img {
@@ -59,7 +61,7 @@ body {
 main {
     width: 90%;
     max-width: 90rem;
-    margin: 3rem auto;
+    margin: 1rem auto;
     background-color: white;
     padding: 1rem;
     border-radius: 12px;
@@ -76,8 +78,8 @@ main {
 #comment-form,
 #comments {
     width: 90%;
-    max-width: 20rem;
-    margin: 3rem auto;
+    max-width: 60rem;
+    margin: 1rem auto;
     border-radius: 12px;
     background-color: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
@@ -228,4 +230,21 @@ main {
     background-color: #390281;
     color: white;
 
+}
+
+@media screen and (max-width: 700px) {
+    #summary {
+        flex-flow: column-reverse;
+        margin: 8rem auto 1rem auto;
+
+    }
+
+    #summary .title,
+    #summary article {
+        text-align: center;
+    }
+
+    #summary h2 {
+        font-size: 3rem;
+    }
 }

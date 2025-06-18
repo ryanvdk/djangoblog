@@ -11,25 +11,28 @@
 
 {% block content %}
   <section id="summary">
-    <h2>{{ post.title }}</h2>
-    <div>
-      {% for tag in tags %}
-        <span class="tag">{{ tag.name }}</span>
-      {% endfor %}
+    <div class="title">
+      <h2>{{ post.title }}</h2>
+      <div>
+        {% for tag in tags %}
+          <span class="tag">{{ tag.name }}</span>
+        {% endfor %}
+      </div>
+      <div id="read-later">
+        <form action="{% url 'read-later' %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" value="{{ post.id }}" name="post_id" />
+          <button>
+            {% if saved_for_later %}
+              Remove from "Read Later" List
+            {% else %}
+              Read Later
+            {% endif %}
+          </button>
+        </form>
+      </div>
     </div>
-    <div id="read-later">
-      <form action="{% url 'read-later' %}" method="POST">
-        {% csrf_token %}
-        <input type="hidden" value="{{ post.id }}" name="post_id" />
-        <button>
-          {% if saved_for_later %}
-            Remove from "Read Later" List
-          {% else %}
-            Read Later
-          {% endif %}
-        </button>
-      </form>
-    </div>
+
     <article>
       <img src="{{ post.image.url }}" alt="{{ post.title }}" />
       <address>
@@ -43,16 +46,18 @@
 
   <main>{{ post.content|linebreaks }}</main>
 
-  <section id="comments">
-    <ul>
-      {% for comment in comments %}
-        <li>
-          <h2>{{ comment.user_name }}</h2>
-          <p>{{ comment.text|linebreaks }}</p>
-        </li>
-      {% endfor %}
-    </ul>
-  </section>
+  {% if comments %}
+    <section id="comments">
+      <ul>
+        {% for comment in comments %}
+          <li>
+            <h2>{{ comment.user_name }}</h2>
+            <p>{{ comment.text|linebreaks }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
 
   {% if comment_form.errors %}
     <div id="alert">

@@ -5,6 +5,7 @@
 
 #welcome header {
     display: flex;
+    flex-flow: row;
     align-items: flex-start;
     margin: 3rem auto;
 }
@@ -37,7 +38,8 @@
     background-color: white;
     padding: 2rem;
     border-radius: 12px;
-    width: 60rem;
+    width: 100%;
+    max-width: 60rem;
     margin: -6rem auto 2rem auto;
     box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.4);
 }
@@ -51,7 +53,9 @@
     margin: 0;
     padding: 0;
     display: flex;
+    flex-flow: row;
     gap: 1rem;
+    width: 100%;
 }
 
 #latest-posts li {
@@ -72,4 +76,22 @@
 #about p {
     font-size: 1.5rem;
     color: #353535;
+}
+
+@media screen and (max-width: 700px) {
+
+    #latest-posts ul,
+    #welcome header {
+        flex-flow: column;
+        align-items: center;
+    }
+
+    #welcome img {
+        margin-bottom: 2rem;
+    }
+
+    #welcome p {
+        display: none;
+    }
+
 }
