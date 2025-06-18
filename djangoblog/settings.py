@@ -15,6 +15,8 @@ from pathlib import Path
 # Used for setting up environment variables
 from os import getenv
 
+import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,11 +30,11 @@ SECRET_KEY = getenv(
     "SECRET_KEY", "django-insecure-h!ll0p ^ e@1q(4=2vtvgmg97eq=fmkzkwboeqp & 3+lgrqqhsp*!")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = getenv("IS_DEVELOPMENT", True)
+DEBUG = getenv("DEBUG", True)
 
 # Have to set this up for production.
 ALLOWED_HOSTS = [
-    getenv("APP_HOST", "localhost")
+    os.environ.get("APP_HOST", "localhost")
 ]
 
 
@@ -83,13 +85,37 @@ WSGI_APPLICATION = 'djangoblog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# SQLite Setup
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# MySQL
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('DB_NAME', 'djangoblog'),
+        'USER': os.environ.get('DB_USER', 'root'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '3306'),
     }
 }
 
+# PostgreSQL
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': "postgres",
+#         "USER": getenv("DB_USER"),
+#         "PASSWORD": getenv("DB_PASSWORD"),
+#         "HOST": getenv("DB_HOST"),
+#         "PORT": getenv("DB_PORT")
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -125,7 +151,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -139,7 +165,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static"
+    BASE_DIR / "static/"
 ]
 
 # Settings for controlling location of user uploaded files. It is important to keep them separate from static files for security reasons.
